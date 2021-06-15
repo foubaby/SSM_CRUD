@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--settings：控制mybatis全局行为-->
+<!--    <settings>-->
+<!--        &lt;!&ndash;设置mybatis输出日志&ndash;&gt;-->
+<!--        <setting name="logImpl" value="STDOUT_LOGGING"/>-->
+<!--        &lt;!&ndash;    设置驼峰命名法    &ndash;&gt;-->
+<!--        <setting name="mapUnderscoreToCamelCase" value="true"/>-->
+<!--    </settings>-->
+
+    <!--设置别名-->
+    <typeAliases>
+        <!--name:实体类所在的包名-->
+        <package name="实体类的包名"/>
+    </typeAliases>
+    
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!--     设置分页参数的合理化，即<0 自动查询第一页， > 总页数自动查询最后一页       -->
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
+
+    <!-- sql mapper(sql映射文件)的位置-->
+    <!--<mappers>
+        &lt;!&ndash;name：是包名，这个包下的所有xml配置文件都能一次加载完成 &ndash;&gt;
+        <package name="com.foubaby.dao"/>
+    </mappers>-->
+
+</configuration>

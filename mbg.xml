@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+
+        <commentGenerator>
+            <!--是否去除自动生成的注释 true：是-->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--   配置数据库连接信息     -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/ssm"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+        <!--java类型的解析 把数据库中的类型解析成java类型-->
+        <javaTypeResolver>
+            <!--数据的精度，如果为true 表示数据的精度很高适用于金钱-->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--   指定JavaBean实体类生成的包名和位置     -->
+        <javaModelGenerator targetPackage="com.foubaby.domain"
+                            targetProject=".\src\main\java">
+            <!--是否将生成的包名和位置进行合并(将com.foubaby.domain 放到 .\src\main\java路径下)-->
+            <property name="enableSubPackages" value="true"/>
+            <!--是否去除String字符串中的空格-->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--    指定sql映射文件生成的包名和位置    -->
+        <sqlMapGenerator targetPackage="com.foubaby.dao"
+                         targetProject=".\src\main\java">
+            <!--将生成的包名和路径进行合并-->
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--    指定dao接口生成的位置    -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.foubaby.dao"
+                             targetProject=".\src\main\java">
+            <!--将生成的包名和路径进行合并-->
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--    指定每个表对应的生成策略 即生成实体类的类名    -->
+        <table tableName="t_emp" domainObjectName="Employee"></table>
+        <table tableName="t_dept" domainObjectName="Department"></table>
+
+
+    </context>
+</generatorConfiguration>

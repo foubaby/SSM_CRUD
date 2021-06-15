@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--  SpringMVC的配置文件  主要包括网站跳转逻辑的控制-->
+
+    <!-- 1. 配置组件扫描器   -->
+    <!--<context:component-scan base-package="com.foubaby" use-default-filters="false">
+        &lt;!&ndash;  禁掉默认扫描包下的全部组件，而只扫描Controller注解  &ndash;&gt;
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>-->
+    <context:component-scan base-package="com.foubaby.controller"/>
+
+    <!--  2. 配置视图解析器  -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--  3. 关于中央调度器 url_pattern设置为 / 对于静态资源请求的解决方案
+             两个标签都需要，否则全部的请求包括动态资源的请求都被交给了Tomcat
+             的默认Servlet处理，导致RequestMapping注解失效-->
+    <mvc:default-servlet-handler/>
+    <mvc:annotation-driven/>
+    <!--  注解驱动的两个功能：
+          1. 解决静态资源的访问
+          2. 响应Ajax请求，将Object返回值封装成Json对象-->
+
+</beans>
